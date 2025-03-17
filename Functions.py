@@ -3,17 +3,17 @@ from Questions import Subject
 import random
 import time
 import copy
-import inputimeout
 from inputimeout import inputimeout, TimeoutOccurred
 import sys
 def Intro()-> str:
+    global Username
     """
     Username: -> str
 
     """
-    global Username
     print("Welcome To the Quiz")
-    Username = input("please enter your username ") 
+    Username = input("please enter your username ")
+    return Username
 #Mainemenu() function prints the main menu of the quiz and asks user for an input
 def MainMenu() -> str:
     """
@@ -58,6 +58,7 @@ def Topics():
     Limit = 60
     Start = time.time()
     Count=0
+    return Limit
     
 
 def Display() -> str:

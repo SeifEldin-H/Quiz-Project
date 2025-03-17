@@ -9,7 +9,7 @@ def main():
             Functions.Topics()
             if Functions.Elapsed < Functions.Limit:
                 for i in range(3):
-                    if Functions.Elapsed >= 10 :
+                    if Functions.Elapsed >= Functions.Limit :
                         print("Times up returning to main menu")
                         time.sleep(1)
                     else:
@@ -19,7 +19,6 @@ def main():
                         Functions.Question.pop()
                         Functions.Options.pop()
                         Functions.Elapsed = time.time() - Functions.Start
-                        print(Functions.Elapsed.__round__(0))
                         
                     print("===============")
                 Functions.Scores()
