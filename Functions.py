@@ -47,12 +47,15 @@ def Topics():
     while True:    
         try:    
             Topic = int(input("Please choose a topic from the list above (1, 2, 3) "))
+            while Topic !=1 and Topic !=2 and Topic !=3:
+                print("Invalid Input")
+                Topic = int(input("Please choose a topic from the list above (1, 2, 3) "))
         except ValueError:
             print("Invalid input please enter (1, 2 or 3)")
             continue
         break   
     Elapsed = 0
-    Limit = 10
+    Limit = 60
     Start = time.time()
     Count=0
     
@@ -62,7 +65,7 @@ def Display() -> str:
         Question -> str
     """
     for x in Question: 
-        print(str(*x[:-1])) #this converts the item in the array to str so that it can remove Curly brackets that appear when outputing the question
+        print(str(*x[:-1])) #this converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
     for Answers in Options:
         print(Answers)
 #this goes through the Subject dictionary to randomize and pick a question from a specific subject 

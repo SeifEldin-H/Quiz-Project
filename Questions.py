@@ -14,60 +14,60 @@ Subject ={
             "D":"D: 4/5",
             "Answer":"D"
         },
-        "What is ":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "What is y in y = 2x+6 where x=5":{
+            "A":"A: 20",
+            "B":"B: 16",
+            "C":"C: 15",
+            "D":"D: 10",
             "Answer":"B"
         },
-        "Question 4":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "x + 6 = 9, then 3x + 1 =":{
+            "A":"A: 10",
+            "B":"B: 20",
+            "C":"C: 3",
+            "D":"D: 9",
             "Answer":"A"
         },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "Bill is ten years older than his sister. If Bill was twenty-five years of age in 1983, in what year could he have been born? ":{
+            "A":"A: 1958",
+            "B":"B: 1948",
+            "C":"C: 1953",
+            "D":"D: 1968",
             "Answer":"A"
         },
-        "Question 6":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "If x is a positive integer in the equation 12x = q, then q must be ":{
+            "A":"A: a positive odd integer",
+            "B":"B: a negative even integer.",
+            "C":"C: zero.",
+            "D":"D: a positive even integer.",
             "Answer":"D"
         },
-        "Question 7":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "What is 9 squared":{
+            "A":"A: 90",
+            "B":"B: 81",
+            "C":"C: 72",
+            "D":"D: 100",
             "Answer":"B"
         },
-        "Question 8":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "If x is an integer number then x squared will always be":{
+            "A":"A: Positive or zero",
+            "B":"B: Negative",
+            "C":"C: Positive",
+            "D":"D: zero",
             "Answer":"A"
         },
-        "Question 9":{
+        "What is the square root of 1024":{
             "A":"A: An1",
             "B":"B: An2",
-            "C":"C: An3",
+            "C":"C: 32",
             "D":"D: An4",
             "Answer":"C"
         },
-        "Question 10":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "Two trains, Train A and Train B, simultaneously depart Station A and Station B. Station A and Station B are 252.5 miles apart from each other. Train A is moving at 124.7mph towards Station B, and Train B is moving at 253.5mph towards station A. If both trains departed at 10:00AM and it is now 10:08, how much longer until both trains pass each other?":{
+            "A":"A: 31.054 min",
+            "B":"B: 32.058 min",
+            "C":"C: 32.049 min",
+            "D":"D: 32.060 min",
             "Answer":"C"
         }
     },
@@ -145,10 +145,10 @@ Subject ={
         }
     },
     "English":{
-        "What is missing in this sentence: ":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
+        "What is missing in this sentence: Sally went to the store":{
+            "A":"A: A period at the end",
+            "B":"B: A comma",
+            "C":"C: Parenthesis",
             "D":"D: An4",
             "Answer":"A"
         },
