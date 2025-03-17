@@ -4,6 +4,7 @@ import random
 import time
 import copy
 import inputimeout
+from inputimeout import inputimeout, TimeoutOccurred
 import sys
 def Intro()-> str:
     """
@@ -23,7 +24,7 @@ def MainMenu() -> str:
     print("1. Start Quiz")
     print("2. Go through results")
     try:
-        UserStart = int(input("Please Choose (1 or 2) (to exit enter 0)"))
+        UserStart = int(input("Please Choose (1 or 2) (to exit enter 0) "))
     except ValueError:
         print("Invalid input, Correct values ar (1 or 2)")
     if UserStart == 0:
@@ -98,29 +99,37 @@ def randomizer() -> dict:
 Count=0
 def Guess():
     global Count
-    
-    print(Elapsed)
-    Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout=Limit)
-    for key in Rq:
-        if Ans[0] == Guess:
-            print("Correct")
-            Count += 1
-            break
-        else:
-            print("Incorrect")
-            print("Correct answer was", Ans[0])
-            break
+    """
+        Guess: -> str
+    """
+    Timer = Limit - Elapsed.__round__(0)
+    print(f"You have {Timer}s left")
+    try:
+        Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer)
+        for key in Rq:
+            if Ans[0] == Guess:
+                print("Correct")
+                Count += 1
+                break
+            else:
+                print("Incorrect")
+                print("Correct answer was", Ans[0])
+                break
+    except TimeoutOccurred:
+        print("Times Up")
 
-        
-def Scores():
-    Score = open("Scores.txt", "a")
-    if View == Username:
-        Score.write(f"{Username}, You got {Count} Questions correct. \n")
-    Score.close()
 def Viewing():
     global View
     View = open("Scores.txt", "r")
     for x in View:
         print(x)
-    View.close()
+    View.close()        
+def Scores():
+    Viewing()
+    Score = open("Scores.txt", "a")
+    if View == Username:
+        Score.write(f"{Username}, You got {Count} Questions correct. \n")
+    
+    Score.close()
+
 

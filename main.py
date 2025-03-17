@@ -1,8 +1,10 @@
 import time
 import Functions
+
 def main():
+    
     Functions.Intro()
-    while True:
+    while True: #indefinite loop until user wants to exit 
         Functions.MainMenu()
         try:
             if Functions.UserStart == 1:
@@ -27,8 +29,6 @@ def main():
                 Functions.Viewing()
         except ValueError:
             print("Invalid input please enter the correct values are ")
-        else:
-            False
 
 
 
