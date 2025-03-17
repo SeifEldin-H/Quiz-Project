@@ -30,8 +30,8 @@ def MainMenu() -> str:
             print("Invalid input, Correct values ar (1 or 2)")
             continue
         break
-    #if UserStart == 0:
-    #   sys.exit()
+    if UserStart == 0:
+       sys.exit()
                 
 
 def Topics():
