@@ -35,7 +35,10 @@ def MainMenu() -> str:
                 
 
 def Topics():
-    global Topic, Start, Elapsed, Limit
+    """
+    
+    """
+    global Topic, Start, Elapsed, Limit, Count
     
     print("===============")
     print("1. Math")
@@ -51,10 +54,13 @@ def Topics():
     Elapsed = 0
     Limit = 10
     Start = time.time()
-    
+    Count=0
     
 
 def Display() -> str:
+    """
+        Question -> str
+    """
     for x in Question: 
         print(str(*x[:-1])) #this converts the item in the array to str so that it can remove Curly brackets that appear when outputing the question
     for Answers in Options:
@@ -101,7 +107,7 @@ def randomizer() -> dict:
 
         
 
-Count=0
+
 def Guess():
     global Count
     """
