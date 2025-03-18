@@ -16,8 +16,7 @@ def main():
                         print("Question",i+1)
                         Functions.randomizer() #this randomizes the questions
                         Functions.Guess()
-                        Functions.Question.pop()
-                        Functions.Options.pop()
+                        
                         Functions.Elapsed = time.time() - Functions.Start
                         
                     print("===============")

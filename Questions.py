@@ -57,10 +57,10 @@ Subject ={
             "Answer":"A"
         },
         "What is the square root of 1024":{
-            "A":"A: An1",
-            "B":"B: An2",
+            "A":"A: 24",
+            "B":"B: 100",
             "C":"C: 32",
-            "D":"D: An4",
+            "D":"D: 36",
             "Answer":"C"
         },
         "Two trains, Train A and Train B, simultaneously depart Station A and Station B. Station A and Station B are 252.5 miles apart from each other. Train A is moving at 124.7mph towards Station B, and Train B is moving at 253.5mph towards station A. If both trains departed at 10:00AM and it is now 10:08, how much longer until both trains pass each other?":{
@@ -149,49 +149,70 @@ Subject ={
             "A":"A: A period at the end",
             "B":"B: A comma",
             "C":"C: Parenthesis",
-            "D":"D: An4",
+            "D":"D: A question mark",
             "Answer":"A"
         },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "What is this sentence an example of: Sally sells seashells at the seashore":{
+            "A":"A: Hyperbole",
+            "B":"B: Tongue twister",
+            "C":"C: Simile",
+            "D":"D: Metaphor",
+            "Answer":"B"
+        },
+        "Fill in the blank: They ______ her and trusted her for years":{
+            "A":"A: Know",
+            "B":"B: Had Know",
+            "C":"C: Known",
+            "D":"D: Knew",
+            "Answer":"D"
+        },
+        "Fill in the blank: She so ______ the interviewers that they gave her the job.":{
+            "A":"A: Disturbed",
+            "B":"B: Praised",
+            "C":"C: Impressed",
+            "D":"D: Admired",
+            "Answer":"C"
+        },
+        "Finish the sentence: Heavy rains persisted ____":{
+            "A":"A: showing the different parts of the system.",
+            "B":"B: than in the past.",
+            "C":"C: that all the goods had to be delivered within four weeks.",
+            "D":"D: for several days, causing heavy flooding.",
+            "Answer":"D"
+        },
+        "Mark ran to the hospital: What is the word form of ran":{
+            "A":"A: Adjective",
+            "B":"B: Verb",
+            "C":"C: Adverb",
+            "D":"D: Noun",
+            "Answer":"B"
+        },
+        "What is the past tense of buy":{
+            "A":"A: Bought",
+            "B":"B: Buying",
+            "C":"C: Will buy",
+            "D":"D: brought",
             "Answer":"A"
         },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
-            "Answer":"A"
+        "Fill in the blank: What angered me wasn't his resignation but the ________ in which he did it.":{
+            "A":"A: method",
+            "B":"B: aspect",
+            "C":"C: bearing",
+            "D":"D: manner",
+            "Answer":"D"
         },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
-            "Answer":"A"
+        "Fill in the blank: There's a ________ range of issues that we need to discuss as soon as possible.":{
+            "A":"A: far",
+            "B":"B: wide",
+            "C":"C: high",
+            "D":"D: ample",
+            "Answer":"B"
         },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
-            "Answer":"A"
-        },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
-            "Answer":"A"
-        },
-        "Question 5":{
-            "A":"A: An1",
-            "B":"B: An2",
-            "C":"C: An3",
-            "D":"D: An4",
+        "Fill in the blank: Much of the neighborhood was demolished in the 1940s when living ________ had deteriorated.":{
+            "A":"A: circumstances",
+            "B":"B: situation",
+            "C":"C: conditions",
+            "D":"D: states",
             "Answer":"A"
         }
     }

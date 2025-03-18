@@ -33,7 +33,7 @@ def MainMenu() -> str:
     if UserStart == 0:
        sys.exit()
                 
-
+#this function outputs the topic which the user can pick
 def Topics():
     """
     
@@ -58,7 +58,7 @@ def Topics():
     Limit = 60
     Start = time.time()
     Count=0
-    return Limit
+    return Topic
     
 
 def Display() -> str:
@@ -71,6 +71,9 @@ def Display() -> str:
         print(Answers)
 #this goes through the Subject dictionary to randomize and pick a question from a specific subject 
 def randomizer() -> dict:
+    """
+
+    """
     global Question, Options, Ans, Rq
     Question = []
     Options = []
@@ -111,7 +114,7 @@ def randomizer() -> dict:
 
         
 
-
+#function that allows user input and validates input also has a timeout feature for when the timeout ends 
 def Guess():
     global Count
     """
@@ -120,11 +123,11 @@ def Guess():
     Timer = Limit - Elapsed.__round__(0)
     print(f"You have {Timer}s left")
     try: 
-        Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer)
-        while Guess != "A" and Guess != "B" and Guess != "C" and Guess != "D":
+        Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper()
+        while Guess != "A" and Guess != "B" and Guess != "C" and Guess != "D": #loop to validate user input
             print("incorrect input, must be (A, B, C or D)")
-            Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer)
-        for key in Rq:
+            Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper()
+        for key in Rq: #loop that goes through the answer for each question and checks users input
             if Ans[0] == Guess:
                 print("Correct")
                 Count += 1
@@ -135,18 +138,24 @@ def Guess():
                 break
     except TimeoutOccurred:
         print("Times Up")
-
+#this functions allows the user to review their past results
 def Viewing():
-    global View
+    """
+    
+    """
     View = open("Scores.txt", "r")
     for x in View:
         print(x)
-    View.close()        
+    View.close()
+        
 def Scores():
     Score = open("Scores.txt", "a")
-
-    Score.write(f"{Username}, You got {Count} Questions correct. \n")
-    
+    if Topic == 1:
+        Score.write(f"{Username}, You got {Count} Questions correct in math.\n")
+    elif Topic == 2:
+        Score.write(f"{Username}, You got {Count} Questions correct in physics.\n")
+    elif Topic == 3:
+        Score.write(f"{Username}, You got {Count} Questions correct in english.\n")
     Score.close()
 
 
