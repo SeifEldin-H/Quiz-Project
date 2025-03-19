@@ -10,7 +10,7 @@ def Intro()-> str:
     """
 
 
-    Username: -> str
+    Username: str
 
     """
     print("Welcome To the Quiz")
@@ -18,12 +18,12 @@ def Intro()-> str:
     return Username
 #Mainemenu() function prints the main menu of the quiz and asks user for an input
 def MainMenu() -> str:
-    global NumbofQ, Limit
     """
+    This function
         UserStart: -> int
 
     """
-    global UserStart
+    global UserStart, NumbofQ, Limit
     print("1. Start Quiz")
     print("2. Go through results")
     while True:
@@ -39,12 +39,28 @@ def MainMenu() -> str:
     Limit = 60
                 
 #this function outputs the topic which the user can pick
-def Topics():
+def Topics() -> int: 
+    """
+    This functions prints the topic the user can choose
+    
+    Parameters
+    ----------
+    
+    Topic: int
+
+    Elapsed: Literal
+
+    Count: Literal
+
+    UAnswers: list
+
+    Return
+    ----------
+    this function has no return statements
+    """
     global Topic, Start, Elapsed, Limit, Count, UAnswers, NumbofQ
-    
-    """
-    
-    """
+    Elapsed = 0
+    Count=0
     
     UAnswers = []
     print("===============")
@@ -78,29 +94,53 @@ def Topics():
             Limit = int(input("Enter the number of seconds (Default is 60s) "))
         except ValueError:
             print("Incorrect input please enter a valid integer")
-    
-
-    Elapsed = 0
-    
     Start = time.time()
-    Count=0
-    return NumbofQ
+
 
     
     
 
 def Display() -> str:
     """
-        Question -> str
+    This functions converts the question list to a string to display the question and loops over the options to display each option the user can choose.
+    
+    Parameters
+    ------------
+    
+    Question: list
+        This holds the question to display
+
+    Answers: Any
+
+
+    Options: list
+
+    Returns
+    -----------
+
+    This function has no return statement    
     """
     for x in Question: 
-        print(str(*x[:-1])) #this converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
+        print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
     for Answers in Options:
         print(Answers)
-#this goes through the Subject dictionary to randomize and pick a question from a specific subject 
+# This goes through the Subject dictionary to randomize and pick a question from a specific subject 
 def randomizer() -> dict:
     """
+    This function picks a random question from the dictionary in Question.py and appends the options, question and answer.
+    ----------
 
+    Question: list
+        This holds the question to display
+
+    Options: list
+        This holds the options the user can use 
+
+    Ans: list
+        This holds the correct option for the question
+
+    Rq: tuple[str, dict[str, str]]
+        The random question
     """
     global Question, Options, Ans, Rq, NumbofQ
     Question = []
@@ -116,7 +156,10 @@ def randomizer() -> dict:
         Options.append(Rq[1]["D"])
         Quiz[1].clear()
         Question.append(Quiz)
-        Display()
+        for x in Question: 
+            print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
+        for Answers in Options:
+            print(Answers)
     elif Topic == 2:
         Rq = random.choice(list(Subject["Physics"].items()))
         Quiz = copy.deepcopy(Rq)
@@ -143,9 +186,14 @@ def randomizer() -> dict:
 
 #function that allows user input and validates input also has a timeout feature for when the timeout ends 
 def Guess():
-    global Count
     """
-        Guess: -> str
+    The guess function allows the user to input an answer to the question it also prints the timer and reduces the time left
+    ---------
+    Guess: LiteralString | str
+
+    Timer: int
+
+
     """
     Timer = Limit - Elapsed.__round__(0)
     print(f"You have {Timer}s left")
@@ -166,7 +214,8 @@ def Guess():
                 UAnswers.append("Wrong")
                 break
     except TimeoutOccurred:
-        print("Times Up")
+        print("Times Up, returning to the main menu")
+        time.sleep(1)
         UAnswers.append("Timeout")
 #this functions allows the user to review their past results
 def Viewing():
@@ -181,14 +230,14 @@ def Viewing():
 def Scores():
     Score = open("Scores.txt", "a")
     if Topic == 1:
-        Score.write(f"{Username}, You got {Count} Questions correct in math.")
-        Score.write(f"{UAnswers}")
+        Score.write(f"{Username}, You got {Count} Questions correct in math.\n")
+        Score.write(f"{UAnswers} \n")
     elif Topic == 2:
-        Score.write(f"{Username}, You got {Count} Questions correct in physics.")
-        Score.write(f"{UAnswers}")
+        Score.write(f"{Username}, You got {Count} Questions correct in physics.\n")
+        Score.write(f"{UAnswers} \n")
     elif Topic == 3:
-        Score.write(f"{Username}, You got {Count} Questions correct in english.")
-        Score.write(f"{UAnswers}")
+        Score.write(f"{Username}, You got {Count} Questions correct in english.\n")
+        Score.write(f"{UAnswers} \n")
     Score.close()
 
 

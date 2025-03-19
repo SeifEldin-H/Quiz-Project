@@ -8,7 +8,7 @@ Terminal or an IDE (common IDE's Visual Studio Code, Pycharm)
 
 <h2>>Instructions:</h2>
 
-Install python version 3.13 here ([Python downloads](https://www.python.org/downloads/))
+Install python version 3.13 here ([Python Download](https://www.python.org/downloads/))
 
 <p>install the required extensions using your systems terminal or using the terminal in your IDE and enter code as shown below</p>
 

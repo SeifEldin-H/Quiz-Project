@@ -2,6 +2,11 @@ import time
 import Functions
 
 def main():
+    """
+    this function 
+
+
+    """
     Functions.Intro()
     while True: #indefinite loop until user wants to exit 
         Functions.MainMenu()
@@ -14,15 +19,11 @@ def main():
                     break
             if Functions.Elapsed < Functions.Limit:
                 for i in range(Functions.NumbofQ):
-                    if Functions.Elapsed >= Functions.Limit:
-                        print("Times up returning to main menu")
-                        time.sleep(1)
-                    else:
-                        print("Question",i+1)
-                        Functions.randomizer() #this randomizes the questions
-                        Functions.Guess()
-                        
-                        Functions.Elapsed = time.time() - Functions.Start
+                    print("Question",i+1)
+                    Functions.randomizer() #this randomizes the questions
+                    Functions.Guess()
+                    
+                    Functions.Elapsed = time.time() - Functions.Start
                         
                     print("===============")
                 Functions.Scores()
