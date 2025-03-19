@@ -6,10 +6,15 @@ def main():
     while True: #indefinite loop until user wants to exit 
         Functions.MainMenu()
         if Functions.UserStart == 1:
-            Functions.Topics()
+            while True:
+                Functions.Topics()
+                if Functions.Topic == 4 or Functions.Topic == 5:
+                    continue
+                else:
+                    break
             if Functions.Elapsed < Functions.Limit:
-                for i in range(3):
-                    if Functions.Elapsed >= Functions.Limit :
+                for i in range(Functions.NumbofQ):
+                    if Functions.Elapsed >= Functions.Limit:
                         print("Times up returning to main menu")
                         time.sleep(1)
                     else:

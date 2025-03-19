@@ -16,6 +16,7 @@ def Intro()-> str:
     return Username
 #Mainemenu() function prints the main menu of the quiz and asks user for an input
 def MainMenu() -> str:
+    global NumbofQ, Limit
     """
         UserStart: -> int
 
@@ -32,22 +33,28 @@ def MainMenu() -> str:
         break
     if UserStart == 0:
        sys.exit()
+    NumbofQ = 3
+    Limit = 60
                 
 #this function outputs the topic which the user can pick
 def Topics():
+    global Topic, Start, Elapsed, Limit, Count, UAnswers, NumbofQ
+    
     """
     
     """
-    global Topic, Start, Elapsed, Limit, Count
-
+    
+    UAnswers = []
     print("===============")
     print("1. Math")
     print("2. Physics")
     print("3. English")
+    print("Enter 4 to change number of questions")
+    print("Enter 5 to change the limit of seconds to complete quiz")
     while True:    
         try:    
             Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
-            while Topic !=1 and Topic !=2 and Topic !=3 and Topic != 0:
+            while Topic !=1 and Topic !=2 and Topic !=3 and Topic != 4 and Topic != 5 and Topic != 0:
                 print("Invalid Input")
                 Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
         except ValueError:
@@ -56,10 +63,27 @@ def Topics():
         break
     if Topic == 0:
         sys.exit()
+    elif Topic == 4:
+        try:
+            NumbofQ = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
+            while NumbofQ > 10 and NumbofQ < 0:
+                print("Max number of questions is 10 please enter a number between 1 and 10")
+                NumbofQ = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
+        except ValueError:
+            print("Incorrect input please enter a valid integer")
+    elif Topic == 5:
+        try:
+            Limit = int(input("Enter the number of seconds (Default is 60s) "))
+        except ValueError:
+            print("Incorrect input please enter a valid integer")
+    
+
     Elapsed = 0
-    Limit = 60
+    
     Start = time.time()
     Count=0
+    return NumbofQ
+
     
     
 
@@ -76,7 +100,7 @@ def randomizer() -> dict:
     """
 
     """
-    global Question, Options, Ans, Rq
+    global Question, Options, Ans, Rq, NumbofQ
     Question = []
     Options = []
     Ans = []
@@ -113,7 +137,6 @@ def randomizer() -> dict:
         Quiz[1].clear()
         Question.append(list(Quiz))
         Display()
-
         
 
 #function that allows user input and validates input also has a timeout feature for when the timeout ends 
@@ -133,13 +156,16 @@ def Guess():
             if Ans[0] == Guess:
                 print("Correct")
                 Count += 1
+                UAnswers.append("Correct")
                 break
             else:
                 print("Incorrect")
                 print("Correct answer was", Ans[0])
+                UAnswers.append("Wrong")
                 break
     except TimeoutOccurred:
         print("Times Up")
+        UAnswers.append("Timeout")
 #this functions allows the user to review their past results
 def Viewing():
     """
@@ -153,11 +179,14 @@ def Viewing():
 def Scores():
     Score = open("Scores.txt", "a")
     if Topic == 1:
-        Score.write(f"{Username}, You got {Count} Questions correct in math.\n")
+        Score.write(f"{Username}, You got {Count} Questions correct in math.")
+        Score.write(f"{UAnswers}")
     elif Topic == 2:
-        Score.write(f"{Username}, You got {Count} Questions correct in physics.\n")
+        Score.write(f"{Username}, You got {Count} Questions correct in physics.")
+        Score.write(f"{UAnswers}")
     elif Topic == 3:
-        Score.write(f"{Username}, You got {Count} Questions correct in english.\n")
+        Score.write(f"{Username}, You got {Count} Questions correct in english.")
+        Score.write(f"{UAnswers}")
     Score.close()
 
 
