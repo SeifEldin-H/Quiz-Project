@@ -39,26 +39,28 @@ def Topics():
     
     """
     global Topic, Start, Elapsed, Limit, Count
-    
+
     print("===============")
     print("1. Math")
     print("2. Physics")
     print("3. English")
     while True:    
         try:    
-            Topic = int(input("Please choose a topic from the list above (1, 2, 3) "))
-            while Topic !=1 and Topic !=2 and Topic !=3:
+            Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
+            while Topic !=1 and Topic !=2 and Topic !=3 and Topic != 0:
                 print("Invalid Input")
-                Topic = int(input("Please choose a topic from the list above (1, 2, 3) "))
+                Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
         except ValueError:
             print("Invalid input please enter (1, 2 or 3)")
             continue
-        break   
+        break
+    if Topic == 0:
+        sys.exit()
     Elapsed = 0
     Limit = 60
     Start = time.time()
     Count=0
-    return Topic
+    
     
 
 def Display() -> str:
