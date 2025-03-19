@@ -170,7 +170,10 @@ def randomizer() -> dict:
         Options.append(Rq[1]["D"])
         Quiz[1].clear()
         Question.append(Quiz)
-        Display()
+        for x in Question: 
+            print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
+        for Answers in Options:
+            print(Answers)
     elif Topic == 3:
         Rq = random.choice(list(Subject["English"].items()))
         Quiz = copy.deepcopy(Rq)
@@ -181,7 +184,10 @@ def randomizer() -> dict:
         Options.append(Rq[1]["D"])
         Quiz[1].clear()
         Question.append(list(Quiz))
-        Display()
+        for x in Question: 
+            print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
+        for Answers in Options:
+            print(Answers)
         
 
 #function that allows user input and validates input also has a timeout feature for when the timeout ends 
@@ -195,6 +201,7 @@ def Guess():
 
 
     """
+    global Count
     Timer = Limit - Elapsed.__round__(0)
     print(f"You have {Timer}s left")
     try: 

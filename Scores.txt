@@ -1,3 +1,1 @@
 
-el, You got 0 Questions correct in math.
-['Correct', 'Correct', 'Wrong'] 
