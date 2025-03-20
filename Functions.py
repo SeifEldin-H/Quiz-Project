@@ -19,9 +19,7 @@ def Intro()-> str:
 
     Returns
     -----------
-
-    Username
-            Returns the username of the user
+        str
     """
     
     print("Welcome To the Quiz")
@@ -126,7 +124,7 @@ def Topics() -> int:
     elif Topic == 4:
         try:
             Numb_of_Q = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
-            while Numb_of_Q > 10 and Numb_of_Q < 0:
+            while Numb_of_Q > 10 or Numb_of_Q <= 0:
                 print("Max number of questions is 10 please enter a number between 1 and 10")
                 Numb_of_Q = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
         except ValueError:
@@ -293,7 +291,7 @@ def Scores():
         Score.write(f"{Username}, You got {Count} Questions correct in physics. {U_Answers} \n") # Stores the username and count of questions the user got correct for physics
     elif Topic == 3: # This checks if the topic chosen is english
         Score.write(f"{Username}, You got {Count} Questions correct in english. {U_Answers} \n") # Stores the username and count of questions the user got correct for english
-    Score.close() # this closes the file
+    Score.close() 
 
 
 def Viewing():
