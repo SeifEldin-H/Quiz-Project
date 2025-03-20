@@ -6,7 +6,7 @@ Python version 3.13 or higher
 
 Terminal or an IDE (common IDE's Visual Studio Code, Pycharm)
 
-<h2>>Instructions:</h2>
+<h2>Instructions:</h2>
 
 Install python version 3.13 here ([Python Download](https://www.python.org/downloads/))
 
