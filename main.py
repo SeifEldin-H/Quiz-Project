@@ -9,8 +9,8 @@ def main():
     """
     Functions.Intro()
     while True: #indefinite loop until user wants to exit 
-        Functions.MainMenu()
-        if Functions.UserStart == 1:
+        Functions.Main_Menu()
+        if Functions.User_Start == 1:
             while True:
                 Functions.Topics()
                 if Functions.Topic == 4 or Functions.Topic == 5:
@@ -18,17 +18,19 @@ def main():
                 else:
                     break
             if Functions.Elapsed < Functions.Limit:
-                for i in range(Functions.NumbofQ):
+                for i in range(Functions.Numb_of_Q):
                     print("Question",i+1)
                     Functions.randomizer() #this randomizes the questions
                     Functions.Guess()
-                    
                     Functions.Elapsed = time.time() - Functions.Start
                         
                     print("===============")
                 Functions.Scores()
-        elif Functions.UserStart == 2:
+        elif Functions.User_Start == 2:
+            time.sleep(1)
             Functions.Viewing()
+
+       
 
 
 

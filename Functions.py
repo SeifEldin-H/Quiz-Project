@@ -5,43 +5,56 @@ import time
 import copy
 from inputimeout import inputimeout, TimeoutOccurred
 import sys
+
 def Intro()-> str:
     global Username
     """
+    This function Introduces the user to the quiz program and prompts them to enter their user name
 
+    Parameters
+    -----------
 
     Username: str
+        This lets the user input their chosen username
 
     """
     print("Welcome To the Quiz")
     Username = input("please enter your username ")
-    return Username
-#Mainemenu() function prints the main menu of the quiz and asks user for an input
-def MainMenu() -> str:
+
+# This function prints the main menu of the quiz and asks user for an input
+def Main_Menu() -> str:
     """
-    This function
-        UserStart: -> int
+    This function displays a main menu for the user to go through the quiz or look at results of previous attempts
+
+    Parameters
+    -----------
+
+    User_Start: int
+        This lets the user input an integer from 0 to 2 to either exit the program 
+
 
     """
-    global UserStart, NumbofQ, Limit
+    global User_Start, Numb_of_Q, Limit
+    print("===============")
     print("1. Start Quiz")
     print("2. Go through results")
     while True:
         try:
-            UserStart = int(input("Please Choose (1 or 2) (to exit enter 0) "))   
+            User_Start = int(input("Please Choose (1 or 2) (to exit enter 0) "))   
         except ValueError:
             print("Invalid input, Correct values ar (1 or 2)")
             continue
         break
-    if UserStart == 0:
+    if User_Start == 0:
        sys.exit()
-    NumbofQ = 3
+    Numb_of_Q = 3
     Limit = 60
+    
                 
-#this function outputs the topic which the user can pick
+# This function outputs the topic which the user can pick
 def Topics() -> int: 
     """
-    This functions prints the topic the user can choose
+    This functions prints the topic the user can choose and also allows the user to edit amount of questions and the length of the time limit
     
     Parameters
     ----------
@@ -52,17 +65,14 @@ def Topics() -> int:
 
     Count: Literal
 
-    UAnswers: list
+    U_Answers: list
 
-    Return
-    ----------
-    this function has no return statements
     """
-    global Topic, Start, Elapsed, Limit, Count, UAnswers, NumbofQ
+    global Topic, Start, Elapsed, Limit, Count, U_Answers, Numb_of_Q
     Elapsed = 0
     Count=0
     
-    UAnswers = []
+    U_Answers = []
     print("===============")
     print("1. Math")
     print("2. Physics")
@@ -72,7 +82,7 @@ def Topics() -> int:
     while True:    
         try:    
             Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
-            while Topic !=1 and Topic !=2 and Topic !=3 and Topic != 4 and Topic != 5 and Topic != 0:
+            while Topic != 0 and Topic !=1 and Topic !=2 and Topic !=3 and Topic != 4 and Topic != 5 and Topic != 6:
                 print("Invalid Input")
                 Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
         except ValueError:
@@ -83,51 +93,32 @@ def Topics() -> int:
         sys.exit()
     elif Topic == 4:
         try:
-            NumbofQ = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
-            while NumbofQ > 10 and NumbofQ < 0:
+            Numb_of_Q = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
+            while Numb_of_Q > 10 and Numb_of_Q < 0:
                 print("Max number of questions is 10 please enter a number between 1 and 10")
-                NumbofQ = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
+                Numb_of_Q = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
         except ValueError:
             print("Incorrect input please enter a valid integer")
     elif Topic == 5:
-        try:
+        try: # try is error handling any input that is not an integer
             Limit = int(input("Enter the number of seconds (Default is 60s) "))
         except ValueError:
             print("Incorrect input please enter a valid integer")
-    Start = time.time()
+
+    print("===============")
+    Start = time.time() # Declaring start here so it does not reset when going through questions using for loops in the main functions
 
 
     
     
 
-def Display() -> str:
-    """
-    This functions converts the question list to a string to display the question and loops over the options to display each option the user can choose.
-    
-    Parameters
-    ------------
-    
-    Question: list
-        This holds the question to display
 
-    Answers: Any
-
-
-    Options: list
-
-    Returns
-    -----------
-
-    This function has no return statement    
-    """
-    for x in Question: 
-        print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
-    for Answers in Options:
-        print(Answers)
 # This goes through the Subject dictionary to randomize and pick a question from a specific subject 
 def randomizer() -> dict:
     """
     This function picks a random question from the dictionary in Question.py and appends the options, question and answer.
+    
+    Parameters
     ----------
 
     Question: list
@@ -140,9 +131,9 @@ def randomizer() -> dict:
         This holds the correct option for the question
 
     Rq: tuple[str, dict[str, str]]
-        The random question
+        The random question that is picked
     """
-    global Question, Options, Ans, Rq, NumbofQ
+    global Question, Options, Ans, Rq, Numb_of_Q
     Question = []
     Options = []
     Ans = []
@@ -194,12 +185,15 @@ def randomizer() -> dict:
 def Guess():
     """
     The guess function allows the user to input an answer to the question it also prints the timer and reduces the time left
+    
+    Parameters
     ---------
+
     Guess: LiteralString | str
 
     Timer: int
 
-
+    UAnswer: list
     """
     global Count
     Timer = Limit - Elapsed.__round__(0)
@@ -213,38 +207,53 @@ def Guess():
             if Ans[0] == Guess:
                 print("Correct")
                 Count += 1
-                UAnswers.append("Correct")
+                U_Answers.append("Correct")
                 break
             else:
                 print("Incorrect")
                 print("Correct answer was", Ans[0])
-                UAnswers.append("Wrong")
+                U_Answers.append("Wrong")
                 break
     except TimeoutOccurred:
         print("Times Up, returning to the main menu")
         time.sleep(1)
-        UAnswers.append("Timeout")
+        U_Answers.append("Timeout")
 #this functions allows the user to review their past results
-def Viewing():
-    """
-    
-    """
-    View = open("Scores.txt", "r")
-    for x in View:
-        print(x)
-    View.close()
-        
+
 def Scores():
     Score = open("Scores.txt", "a")
     if Topic == 1:
-        Score.write(f"{Username}, You got {Count} Questions correct in math.\n")
-        Score.write(f"{UAnswers} \n")
+        Score.write(f"{Username}, You got {Count} Questions correct in math. {U_Answers} \n")
     elif Topic == 2:
-        Score.write(f"{Username}, You got {Count} Questions correct in physics.\n")
-        Score.write(f"{UAnswers} \n")
+        Score.write(f"{Username}, You got {Count} Questions correct in physics. {U_Answers} \n")
     elif Topic == 3:
-        Score.write(f"{Username}, You got {Count} Questions correct in english.\n")
-        Score.write(f"{UAnswers} \n")
+        Score.write(f"{Username}, You got {Count} Questions correct in english. {U_Answers} \n")
     Score.close()
 
 
+def Viewing():
+    """
+    This function views the results of the quiz and only prints specific usernames scores
+
+    Parameter
+    ----------
+
+    View: TextIOWrapper[_WrappedBuffer]
+        This opens the file to read the content
+
+    Saved_User: list[str]
+        This variable helps locate the username of the user to output their score 
+
+
+    """
+    View = open("Scores.txt", "r")
+    Saved_User = View.readlines()
+    for x in range(len(Saved_User)):
+        if Username in Saved_User[x]:
+            print(Saved_User[x])
+    if Username not in Saved_User[x]:
+        print("===============")
+        print("user not found")
+        
+    View.close()
+        

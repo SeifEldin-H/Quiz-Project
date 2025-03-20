@@ -1,5 +1,5 @@
 <h1>Quiz</h1>
-<p>Welcome to my quiz application. The quiz program runs on a terminal and an integrated development environment (IDE) and is it is an Multiple choice type question format.</p>
+<p>Welcome to my quiz application. The quiz program runs on a terminal and on an integrated development environment (IDE) and it is a multiple choice type question format.</p>
 <h2>Requirements:</h2>
 
 Python version 3.13 or higher
