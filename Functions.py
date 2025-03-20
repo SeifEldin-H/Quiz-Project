@@ -114,7 +114,7 @@ def Topics() -> int:
 
 
 # This goes through the Subject dictionary to randomize and pick a question from a specific subject 
-def randomizer() -> dict:
+def Randomizer() -> dict:
     """
     This function picks a random question from the dictionary in Question.py and appends the options, question and answer.
     

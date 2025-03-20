@@ -20,7 +20,7 @@ def main():
             if Functions.Elapsed < Functions.Limit:
                 for i in range(Functions.Numb_of_Q):
                     print("Question",i+1)
-                    Functions.randomizer() #this randomizes the questions
+                    Functions.Randomizer() #this randomizes the questions
                     Functions.Guess()
                     Functions.Elapsed = time.time() - Functions.Start
                         
