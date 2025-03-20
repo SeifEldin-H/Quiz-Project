@@ -1,13 +1,13 @@
-from Questions import Subject
-#importing the random feature to randomize the questions
-import random
-import time
-import copy
-from inputimeout import inputimeout, TimeoutOccurred
-import sys
+from Questions import Subject # Imports the nested dictionaty from the Questions file
+import random # Importing the random feature to randomize the questions
+import time # Imports time module to start the time
+import copy # Imports copy module allowing use of deepcopy
+from inputimeout import inputimeout, TimeoutOccurred # Imports input timeout feature from the inputimeout module for setting time limits for the user
+import sys # Imports 
+
 
 def Intro()-> str:
-    global Username
+    global Username 
     """
     This function Introduces the user to the quiz program and prompts them to enter their user name
 
@@ -17,9 +17,25 @@ def Intro()-> str:
     Username: str
         This lets the user input their chosen username
 
+    Returns
+    -----------
+
+    Username
+            Returns the username of the user
     """
+    
     print("Welcome To the Quiz")
-    Username = input("please enter your username ")
+    while True: # Indefinite loop for error checking
+        try: # try is error handling any incorrect input
+            Username = input("please enter your username ")
+            if len(Username) != 0 and not Username.isspace(): # This conditional statement check for empty spaces and empty inputs
+                return Username
+            else:
+                print("invalid input, no spaces or empty characters") # This prints when the input is invalid
+        except:
+            pass
+    
+    
 
 # This function prints the main menu of the quiz and asks user for an input
 def Main_Menu() -> str:
@@ -30,25 +46,34 @@ def Main_Menu() -> str:
     -----------
 
     User_Start: int
-        This lets the user input an integer from 0 to 2 to either exit the program 
+        This lets the user input an integer from 0 to 2 to either exit the program
+    
+    Numb_of_Q: Literal[3]
+        This is the number for the default amount of questions to appear
 
+    Limit: Literal[60]
+        This is the number for the limit that is set for completing the quiz
 
     """
-    global User_Start, Numb_of_Q, Limit
+    global User_Start, Numb_of_Q, Limit # Sets variables in this function to global so other functions can use variables
     print("===============")
     print("1. Start Quiz")
     print("2. Go through results")
-    while True:
-        try:
-            User_Start = int(input("Please Choose (1 or 2) (to exit enter 0) "))   
+    while True: # Indefinite loop
+        try: # try is error handling any input that is not an integer
+            User_Start = int(input("Please Choose (1 or 2) (to exit enter 0) ")) # Converts the input to integer so that it does not cause errors
+            while User_Start != 0 and User_Start != 1 and User_Start != 2: # Checks if the input meets the requirements of the valid inputs
+                print("Invalid input, Correct values ar (1 or 2)")
+                return User_Start
         except ValueError:
             print("Invalid input, Correct values ar (1 or 2)")
             continue
         break
-    if User_Start == 0:
-       sys.exit()
-    Numb_of_Q = 3
-    Limit = 60
+            
+    if User_Start == 0: # Checks the users input for exiting the program
+        sys.exit() # Command that exits the program
+    Numb_of_Q = 3 # Initialises the number of questions
+    Limit = 60 # Initialises the limit since 
     
                 
 # This function outputs the topic which the user can pick
@@ -60,37 +85,44 @@ def Topics() -> int:
     ----------
     
     Topic: int
+        allows the user to pick which topic to choose
 
-    Elapsed: Literal
+    Elapsed: Literal[0]
+        It is the time elapsed until time limit has been reached
 
-    Count: Literal
+    Count: Literal[0]
+        This is the count for amount of question the user can get correct
 
     U_Answers: list
+        This is to store what questions the user got correct, wrong or the timeout
+
+    Start: float
+        This to initialise the starting time of the quiz
 
     """
     global Topic, Start, Elapsed, Limit, Count, U_Answers, Numb_of_Q
-    Elapsed = 0
-    Count=0
-    
-    U_Answers = []
+    Elapsed = 0 # Initialises the elapsed time to 0 so that it resets when going back to the Topics menu
+    Count=0 # Initialises the count to 0 so that it resets the count for amount of questions gotten correct to 0 so that 
+    U_Answers = [] # This list is for
+    # Prints the options for the user to choose for subjects or changing timing and number of questions
     print("===============")
     print("1. Math")
     print("2. Physics")
     print("3. English")
-    print("Enter 4 to change number of questions")
-    print("Enter 5 to change the limit of seconds to complete quiz")
-    while True:    
+    print("4. to change number of questions")
+    print("5. to change the limit of seconds to complete quiz")
+    while True:    # Indefinite Loop
         try:    
-            Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
-            while Topic != 0 and Topic !=1 and Topic !=2 and Topic !=3 and Topic != 4 and Topic != 5 and Topic != 6:
-                print("Invalid Input")
-                Topic = int(input("Please choose a topic from the list above (1, 2, 3) (To exit quiz enter 0) "))
+            Topic = int(input("Please choose a topic from the list above (1, 2, 3) or to change amount of seconds or question (4,5) (To exit quiz enter 0) "))
+            while Topic != 0 and Topic !=1 and Topic !=2 and Topic !=3 and Topic != 4 and Topic != 5 and Topic != 6: # Checks if the input is not the options shown to loop for a correct input
+                print("Invalid Input please enter (1, 2 or 3)")
+                Topic = int(input("Please choose a topic from the list above (1, 2, 3) or to change amount of seconds or question (4,5) (To exit quiz enter 0) "))
         except ValueError:
             print("Invalid input please enter (1, 2 or 3)")
             continue
         break
     if Topic == 0:
-        sys.exit()
+        sys.exit() #This exists the code
     elif Topic == 4:
         try:
             Numb_of_Q = int(input("Enter the number of questions you would like to answer (Max 10) (Default is 3 questions) "))
@@ -133,14 +165,16 @@ def Randomizer() -> dict:
     Rq: tuple[str, dict[str, str]]
         The random question that is picked
     """
-    global Question, Options, Ans, Rq, Numb_of_Q
-    Question = []
-    Options = []
-    Ans = []
-    if Topic == 1:
-        Rq = random.choice(list(Subject["Math"].items())) # This picks a random question from the math subject
-        Quiz = copy.deepcopy(Rq) # This copies the Rq list to only have the question
+    global  Rq, Numb_of_Q, Ans
+    Question = [] # initialised the Question list for appending the question asked
+    Options = [] # initialised the Options list for appending the options printed
+    Ans = [] # initialised the Ans list for appending the answer 
+
+    if Topic == 1: # This is the topic for math
+        Rq = random.choice(list(Subject["Math"].items())) # This picks a random question from the math subject dictionary
+        Quiz = copy.deepcopy(Rq) # This copies the Rq list to only have the question to appear
         Ans.append(Rq[1]["Answer"]) # This appends the answer to the Ans list
+        
         # Here is where each option is appended to the Options list
         Options.append(Rq[1]["A"])
         Options.append(Rq[1]["B"])
@@ -148,18 +182,20 @@ def Randomizer() -> dict:
         Options.append(Rq[1]["D"])
         
         Quiz[1].clear() # Here I cleared the nested dictionary so that the question only remains
-        Question.append(Quiz) # It is then appended to the question list # This goes through
+        Question.append(Quiz) # It is then appended to the question list
         print(str(*Question[0][:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
         for Answers in Options: # This for loop goes over each option to output it line by line
             print(Answers) 
-    elif Topic == 2:
-        Rq = random.choice(list(Subject["Physics"].items())) # This picks a random question from the math subject
+    elif Topic == 2: # This is the topic for Physics
+        Rq = random.choice(list(Subject["Physics"].items())) # This picks a random question from the physics subject dictionary
         Quiz = copy.deepcopy(Rq)
         Ans.append(Rq[1]["Answer"])
+        # Here is where each option is appended to the Options list
         Options.append(Rq[1]["A"])
         Options.append(Rq[1]["B"])
         Options.append(Rq[1]["C"])
         Options.append(Rq[1]["D"])
+
         Quiz[1].clear()
         Question.append(Quiz)
         for x in Question: 
@@ -167,10 +203,10 @@ def Randomizer() -> dict:
         for Answers in Options:
             print(Answers)
     elif Topic == 3:
-        Rq = random.choice(list(Subject["English"].items()))
-        Quiz = copy.deepcopy(Rq)
-        Ans.append(Rq[1]["Answer"]) # This picks a random question from the math subject
+        Rq = random.choice(list(Subject["English"].items())) # This picks a random question from the english subject dictionary
         Options.append(Rq[1]["A"])
+        Quiz = copy.deepcopy(Rq)
+        Ans.append(Rq[1]["Answer"]) 
         Options.append(Rq[1]["B"])
         Options.append(Rq[1]["C"])
         Options.append(Rq[1]["D"])
@@ -182,7 +218,7 @@ def Randomizer() -> dict:
             print(Answers)
         
 
-#function that allows user input and validates input also has a timeout feature for when the timeout ends 
+# This function that allows user input and validates input also has a timeout feature for when the timeout ends 
 def Guess():
     """
     The guess function allows the user to input an answer to the question it also prints the timer and reduces the time left
@@ -191,45 +227,73 @@ def Guess():
     ---------
 
     Guess: LiteralString | str
+        This is how the user enters their guess
+
+    timeout: float
+        The time limit until the user can input an answer
 
     Timer: int
+        This is the timer prompting the user to finish
+    
+    U_Answer: list
+        This list is used to append what the user got wrong, correct and timeout
 
-    UAnswer: list
+    Example
+    ---------
+
+        Timer: You have 60s left    
+    
     """
     global Count
-    Timer = Limit - Elapsed.__round__(0)
-    print(f"You have {Timer}s left")
+    Timer = Limit - Elapsed.__round__(0) # Here is how the Time limit is calculated
+    print(f"You have {Timer}s left") # Displays the time limit to the user
     try: 
-        Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper()
+        Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper() # This variable helps exit the input when user has reached the time limit
         while Guess != "A" and Guess != "B" and Guess != "C" and Guess != "D": #loop to validate user input
             print("incorrect input, must be (A, B, C or D)")
             Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper()
         for key in Rq: #loop that goes through the answer for each question and checks users input
-            if Ans[0] == Guess:
-                print("Correct")
-                Count += 1
-                U_Answers.append("Correct")
+            if Ans[0] == Guess: # This conditional statement compares the correct answer withe the users guess
+                print("Correct") 
+                Count += 1 # Here is the count for the amount of questions the user got correct
+                U_Answers.append("Correct") # This appends to a list that is later saved to the scores file when the user got something correct
                 break
             else:
                 print("Incorrect")
                 print("Correct answer was", Ans[0])
-                U_Answers.append("Wrong")
+                U_Answers.append("Wrong") # This appends to a list that is later saved to the scores file when the user got something wrong
                 break
-    except TimeoutOccurred:
+    except TimeoutOccurred: # This returns the user to the main menu when the time limit has been reached
         print("Times Up, returning to the main menu")
+        U_Answers.append("Timeout") # This appends to a list that is later saved to the scores file when the user ran out of time
         time.sleep(1)
-        U_Answers.append("Timeout")
+        
 #this functions allows the user to review their past results
 
 def Scores():
-    Score = open("Scores.txt", "a")
-    if Topic == 1:
-        Score.write(f"{Username}, You got {Count} Questions correct in math. {U_Answers} \n")
-    elif Topic == 2:
-        Score.write(f"{Username}, You got {Count} Questions correct in physics. {U_Answers} \n")
-    elif Topic == 3:
-        Score.write(f"{Username}, You got {Count} Questions correct in english. {U_Answers} \n")
-    Score.close()
+    """
+    This function saves the users' score to the specific subject chosen
+
+    Parameters
+    -----------
+    
+    Score: TextIOWrapper[_WrappedBuffer]
+        Saves the user score
+
+    Example
+    -----------
+    
+    {Username}, You got {Count} questions correct in (Subject). ['Correct', 'Wrong', 'Timeout']
+    
+    """
+    Score = open("Scores.txt", "a") 
+    if Topic == 1: # This checks if the topic chosen is math
+        Score.write(f"{Username}, You got {Count} Questions correct in math. {U_Answers} \n") # Stores the username and count of questions the user got correct math
+    elif Topic == 2: # This checks if the topic chosen is physics
+        Score.write(f"{Username}, You got {Count} Questions correct in physics. {U_Answers} \n") # Stores the username and count of questions the user got correct for physics
+    elif Topic == 3: # This checks if the topic chosen is english
+        Score.write(f"{Username}, You got {Count} Questions correct in english. {U_Answers} \n") # Stores the username and count of questions the user got correct for english
+    Score.close() # this closes the file
 
 
 def Viewing():
@@ -248,9 +312,9 @@ def Viewing():
 
     """
     View = open("Scores.txt", "r")
-    Saved_User = View.readlines()
-    for x in range(len(Saved_User)):
-        if Username in Saved_User[x]:
+    Saved_User = View.readlines() # This reads lines of the scores file
+    for x in range(len(Saved_User)): # This loops over line by line the Scores file
+        if Username in Saved_User[x]: # This checks if the username exists in the file
             print(Saved_User[x])
     if Username not in Saved_User[x]:
         print("===============")

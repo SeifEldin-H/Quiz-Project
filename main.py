@@ -3,7 +3,7 @@ import Functions
 
 def main():
     """
-    this function 
+    This function 
 
 
     """
@@ -19,17 +19,22 @@ def main():
                     break
             if Functions.Elapsed < Functions.Limit:
                 for i in range(Functions.Numb_of_Q):
-                    print("Question",i+1)
-                    Functions.Randomizer() #this randomizes the questions
-                    Functions.Guess()
-                    Functions.Elapsed = time.time() - Functions.Start
+                    if Functions.Elapsed >= Functions.Limit:
+                        print("Times up returning to main menu")
+                        time.sleep(1)
+                    else:
+                        print("Question",i+1)
+                    
+                        Functions.Randomizer() #this randomizes the questions
+                        Functions.Guess()
+                        
+                        Functions.Elapsed = time.time() - Functions.Start
                         
                     print("===============")
                 Functions.Scores()
             else:
                 break
         elif Functions.User_Start == 2:
-            time.sleep(1)
             Functions.Viewing()
 
        

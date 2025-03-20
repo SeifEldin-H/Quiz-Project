@@ -1,6 +1,2 @@
-
-el, You got 0 Questions correct in math. ['Wrong', 'Wrong', 'Wrong'] 
-el, You got 3 Questions correct in math. ['Correct', 'Correct', 'Correct'] 
-el, You got 0 Questions correct in math. ['Wrong', 'Wrong', 'Wrong'] 
-el, You got 0 Questions correct in math. ['Timeout', 'Timeout', 'Timeout'] 
-el, You got 0 Questions correct in math. ['Timeout', 'Timeout', 'Timeout'] 
+guest, You got {Count} questions correct in (Subject). ['Correct', 'Wrong', 'Timeout']
+el, You got 2 Questions correct in math. ['Wrong', 'Correct', 'Correct'] 
