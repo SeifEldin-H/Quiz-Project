@@ -26,6 +26,8 @@ def main():
                         
                     print("===============")
                 Functions.Scores()
+            else:
+                break
         elif Functions.User_Start == 2:
             time.sleep(1)
             Functions.Viewing()

@@ -138,21 +138,22 @@ def Randomizer() -> dict:
     Options = []
     Ans = []
     if Topic == 1:
-        Rq = random.choice(list(Subject["Math"].items()))
-        Quiz = copy.deepcopy(Rq)
-        Ans.append(Rq[1]["Answer"])
+        Rq = random.choice(list(Subject["Math"].items())) # This picks a random question from the math subject
+        Quiz = copy.deepcopy(Rq) # This copies the Rq list to only have the question
+        Ans.append(Rq[1]["Answer"]) # This appends the answer to the Ans list
+        # Here is where each option is appended to the Options list
         Options.append(Rq[1]["A"])
         Options.append(Rq[1]["B"])
         Options.append(Rq[1]["C"])
         Options.append(Rq[1]["D"])
-        Quiz[1].clear()
-        Question.append(Quiz)
-        for x in Question: 
-            print(str(*x[:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
-        for Answers in Options:
-            print(Answers)
+        
+        Quiz[1].clear() # Here I cleared the nested dictionary so that the question only remains
+        Question.append(Quiz) # It is then appended to the question list # This goes through
+        print(str(*Question[0][:-1])) # This converts the item in the array to str so that it can remove Curly brackets that appear when it outputs the question
+        for Answers in Options: # This for loop goes over each option to output it line by line
+            print(Answers) 
     elif Topic == 2:
-        Rq = random.choice(list(Subject["Physics"].items()))
+        Rq = random.choice(list(Subject["Physics"].items())) # This picks a random question from the math subject
         Quiz = copy.deepcopy(Rq)
         Ans.append(Rq[1]["Answer"])
         Options.append(Rq[1]["A"])
@@ -168,7 +169,7 @@ def Randomizer() -> dict:
     elif Topic == 3:
         Rq = random.choice(list(Subject["English"].items()))
         Quiz = copy.deepcopy(Rq)
-        Ans.append(Rq[1]["Answer"])
+        Ans.append(Rq[1]["Answer"]) # This picks a random question from the math subject
         Options.append(Rq[1]["A"])
         Options.append(Rq[1]["B"])
         Options.append(Rq[1]["C"])
