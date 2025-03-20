@@ -1,2 +1,1 @@
 guest, You got {Count} questions correct in (Subject). ['Correct', 'Wrong', 'Timeout']
-el, You got 2 Questions correct in math. ['Wrong', 'Correct', 'Correct'] 

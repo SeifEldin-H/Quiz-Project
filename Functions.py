@@ -253,7 +253,7 @@ def Guess():
             print("incorrect input, must be (A, B, C or D)")
             Guess = inputimeout(prompt = "please enter a guess to the question (A, B, C, D) ", timeout = Timer).upper()
         for key in Rq: #loop that goes through the answer for each question and checks users input
-            if Ans[0] == Guess: # This conditional statement compares the correct answer withe the users guess
+            if Ans[0] == Guess: # This conditional statement compares the correct answer with the users guess
                 print("Correct") 
                 Count += 1 # Here is the count for the amount of questions the user got correct
                 U_Answers.append("Correct") # This appends to a list that is later saved to the scores file when the user got something correct
