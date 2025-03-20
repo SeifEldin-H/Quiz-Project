@@ -13,8 +13,8 @@ Pip is automatically downloaded with python
 
 <p>install the required module using your systems terminal or using the terminal in your IDE and enter code as shown below</p>
 
-    1. pip3 install inputimeout  
-    2. pip3 install time
+    pip3 install inputimeout  
+
 <h3>Running the Quiz on an IDE</h3>
 <p>To run the quiz you must open the main.py on your preferred IDE file and press the run button. (The run button is usually found on the top right corner of the IDE)</p>
 <h3>Running the quiz on terminal</h3>

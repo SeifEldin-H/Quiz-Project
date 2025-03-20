@@ -20,7 +20,6 @@ def main():
             if Functions.Elapsed < Functions.Limit:
                 for i in range(Functions.Numb_of_Q):
                     if Functions.Elapsed >= Functions.Limit:
-                        print("Times up returning to main menu")
                         time.sleep(1)
                     else:
                         print("Question",i+1)
